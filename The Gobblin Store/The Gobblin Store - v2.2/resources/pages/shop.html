@@ -12,40 +12,70 @@
   <!-- Load jQuery from a cdn (cloudflare) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <!-- Load bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js" integrity="sha384-xxxxx" crossorigin="anonymous"></script>
   <!-- Load shop.js -->
   <script src="../scripts/shop.js"></script>
 </head>
 
 <body>
-    <!-- Header -->
-    <div id="header"></div>
+  <!--Nav bar-->
+  <nav class="navbar navbar-expand-lg d-md-flex justify-content-center">
+    <div class="container-fluid col-lg-3 col-md-12 d-md-flex justify-content-center">
+      <a class="navbar-brand m-0" href="../../index.html">
+        <img src="../../resources/styles/pics/logoCircle.png" alt="logo" width="230" height="210" class="img d-inline-block align-text-top rounded-circle" />
+      </a>
+    </div>
+    <button class="navbar-dark navbar-toggler m-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav col-lg-9 col-md-12 m-auto justify-content-end">
+        <li class="nav-item p-lg-5">
+          <a class="nav-link active text-black fw-bold" href="../../index.html">Home</a>
+        </li>
+        <li class="nav-item p-lg-5">
+          <a class="nav-link text-muted" href="./resources/pages/shop.html">Shop</a>
+        </li>
+        <li class="nav-item p-lg-5">
+          <a class="nav-link text-muted" href="./about.html">About Us</a>
+        </li>
+        <li class="nav-item p-lg-5">
+          <a class="nav-link text-muted" href="./contact.html">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-
+  <!-- Header -->
+  <div id="header"></div>
   <div class="container text-center border-bottom">
     <h1>Gold Group</h1>
     <h6>These goblins produce a special high frequency chirp that is so looked after.</h6>
     <div class="container d-flex justify-content-around border-bottom p-sm-5">
       <div class="card">
         <div class="card-body">
-          <p class="card-text">Supreme Goblin<br>$150</b></p>
+          <p class="card-text">Supreme Goblin<br>$150</p>
+          <button class="btn btn-primary add-item-btn" data-name="Supreme Goblin" data-price="150" data-img="../styles/pics/tiny.png">Add item</button>
         </div>
         <img src="../styles/pics/tiny.png" class="card-img-top mymodal" alt="picture of goblin">
       </div>
       <div class="card">
         <div class="card-body">
-          <p class="card-text">Magical Goblin<br>$125</b></p>
+          <p class="card-text">Magical Goblin<br>$125</p>
+          <button class="btn btn-primary add-item-btn" data-name="Magical Goblin" data-price="125" data-img="../styles/pics/tiny.png">Add item</button>
         </div>
         <img src="../styles/pics/tiny.png" class="card-img-top" alt="picture of goblin">
       </div>
       <div class="card">
         <div class="card-body">
-          <p class="card-text">Elite Goblin<br>$110</b></p>
+          <p class="card-text">Elite Goblin<br>$110</p>
+          <button class="btn btn-primary add-item-btn" data-name="Elite Goblin" data-price="110" data-img="../styles/pics/tiny.png">Add item</button>
         </div>
         <img src="../styles/pics/tiny.png" class="card-img-top" alt="picture of goblin">
       </div>
     </div>
   </div>
+
   <div class="container text-center border-bottom">
     <h1>Silver Group</h1>
     <h6>These goblins are starting to learn the chirp, but can only produce it on a full moon.</h6>
@@ -53,23 +83,27 @@
       <div class="card">
         <div class="card-body">
           <p class="card-text">Joker Goblin<br>$80</p>
+          <button class="btn btn-primary add-item-btn" data-name="Joker Goblin" data-price="80" data-img="../styles/pics/tiny.png">Add item</button>
         </div>
         <img src="../styles/pics/tiny.png" class="card-img-top" alt="picture of goblin">
       </div>
       <div class="card">
         <div class="card-body">
           <p class="card-text">Mage Goblin<br>$65</p>
+          <button class="btn btn-primary add-item-btn" data-name="Mage Goblin" data-price="65" data-img="../styles/pics/tiny.png">Add item</button>
         </div>
         <img src="../styles/pics/tiny.png" class="card-img-top" alt="picture of goblin">
       </div>
       <div class="card">
         <div class="card-body">
           <p class="card-text">Dancing Goblin<br>$55</p>
+          <button class="btn btn-primary add-item-btn" data-name="Dancing Goblin" data-price="55" data-img="../styles/pics/tiny.png">Add item</button>
         </div>
         <img src="../styles/pics/tiny.png" class="card-img-top" alt="picture of goblin">
       </div>
     </div>
   </div>
+
   <div class="container text-center border-bottom">
     <h1>Bronze Group</h1>
     <h6>These goblins are on sale! Good luck trying to get a chirp out of these.</h6>
@@ -77,29 +111,57 @@
       <div class="card">
         <div class="card-body">
           <p class="card-text">Sad Goblin<br>$35</p>
+          <button class="btn btn-primary add-item-btn" data-name="Sad Goblin" data-price="35" data-img="../styles/pics/tiny.png">Add item</button>
         </div>
         <img src="../styles/pics/tiny.png" class="card-img-top" alt="">
       </div>
       <div class="card">
         <div class="card-body">
           <p class="card-text">Broken Goblin<br>$25</p>
+          <button class="btn btn-primary add-item-btn" data-name="Broken Goblin" data-price="25" data-img="../styles/pics/tiny.png">Add item</button>
         </div>
         <img src="../styles/pics/tiny.png" class="card-img-top" alt="">
       </div>
       <div class="card">
         <div class="card-body">
           <p class="card-text">Crying Goblin<br>$15</p>
+          <button class="btn btn-primary add-item-btn" data-name="Crying Goblin" data-price="15" data-img="../styles/pics/tiny.png">Add item</button>
         </div>
         <img src="../styles/pics/tiny.png" class="card-img-top" alt="">
       </div>
     </div>
   </div>
 
-    <!-- Shopping Cart Button -->
-    <div id="shoppingCart"></div>
+<!-- Shopping Cart Button -->
+<div id="shoppingCart" class="fixed-bottom">
+  <a href="#" id="viewCartBtn" class="btn btn-primary rounded-circle">
+    <img src="/resources/styles/pics/Cart.jpg" alt="Shopping Cart Icon" class="btn-icon">
+  </a>
+</div>
 
-    <!-- Footer -->
-    <div id="footer"></div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="shoppingCartModal" tabindex="-1" aria-labelledby="shoppingCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="shoppingCartModalLabel">Shopping Cart</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="shoppingCartItems">
+          <!-- Shopping cart items will be dynamically inserted here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="checkoutBtn">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
@@ -117,55 +179,9 @@
       $("#footer").load("./template/footer.html", () => {
         $("#footerShop")
           .removeClass()
-          .addClass("nav-link active text-black fw-bold");
+          .addClass("nav-link text-black fw-bold");
       });
-
-      // Load shoppingCart.html
-      $("#shoppingCart").load("shoppingCart.html");
-
-        // if the user clicks the .card div (goblin item)
-  $(".card").click(function () {
-    let products = [];
-
-    // populate the products array with the current product's info
-    if (localStorage.getItem("items")) {
-      products = JSON.parse(localStorage.getItem("items"));
-    }
-
-    const itemElement = $(this).find(".card-text").text(); // Supreme Goblin$100
-    const itemName = itemElement.split("$")[0]; // Supreme Goblin
-    const itemPrice = itemElement.split("$")[1]; // 100
-
-
-
-    // check if the item is already in the cart
-    let itemExists = false;
-    products.forEach((product) => {
-      if (product.name === itemName) {
-        itemExists = true;
-        product.quantity += 1;
-      }
     });
-
-    // if the item is not in the cart, add it to the cart
-    if (!itemExists) {
-      products.push({
-        name: itemName,
-        price: itemPrice,
-        quantity: 1,
-      });
-    }
-
-    // save the products array to localStorage
-    localStorage.setItem("items", JSON.stringify(products));
-
-    // Open shoppingCartButton.html and update .numberOfItems div
-    $("#shoppingCart").load("shoppingCart.html", () => {
-      $(".numberOfItems").text(products.length);
-    });
-  });
-});
   </script>
-
-  </body>
+</body>
 </html>
