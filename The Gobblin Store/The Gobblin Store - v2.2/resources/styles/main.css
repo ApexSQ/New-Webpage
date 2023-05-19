@@ -35,7 +35,8 @@ Contact Us
 */
 footer {
   background-color: #9b9b9b;
-}                             
+}    
+
 /*                      
  #     #                 
  ##   ##   ##   # #    # 
@@ -49,6 +50,7 @@ footer {
   height: 350px;
   width: 100%;
 }
+
 /*
   #####                       
  #     # #    #  ####  #####  
@@ -58,53 +60,27 @@ footer {
  #     # #    # #    # #      
   #####  #    #  ####  #       
 */ 
+
 .card {
   width: 18rem;
   margin: 0px 5px;
-}                      
- 
-/*
-    #                                 #     #        
-   # #   #####   ####  #    # #####   #     #  ####  
-  #   #  #    # #    # #    #   #     #     # #      
- #     # #####  #    # #    #   #     #     #  ####  
- ####### #    # #    # #    #   #     #     #      # 
- #     # #    # #    # #    #   #     #     # #    # 
- #     # #####   ####   ####    #      #####   ####  
-*/
+}     
 
-/* 
-  #####                                            #     #        
- #     #  ####  #    # #####   ##    ####  #####   #     #  ####  
- #       #    # ##   #   #    #  #  #    #   #     #     # #      
- #       #    # # #  #   #   #    # #        #     #     #  ####  
- #       #    # #  # #   #   ###### #        #     #     #      # 
- #     # #    # #   ##   #   #    # #    #   #     #     # #    # 
-  #####   ####  #    #   #   #    #  ####    #      #####   ####  
-*/
+#message {
+  display: none;
+  padding: 20px; 
+  width: 300px; 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  z-index: 9999;
+  text-align: center;
+  opacity: 0.8;
+}
 
-
-address {
-  margin: 0px;
-}
-.card-img {
-  transition: transform 2s ease-out;
-  position: relative;
-}
-.card-img:hover {
-  transform: scale(2, 2);
-  object-fit: contain;
-  position: absolute;
-}
-.alert {
-  opacity: .2;
-  margin: 0px;
-  padding: 0px;
-}
-.alert, p {
-  color: black;
-  opacity: .9;
-}
 .cart-item-image {
   max-width: 200px;
   height: auto;
@@ -130,4 +106,55 @@ address {
   width: 40px;
   height: 40px;
 }
+
+/*
+    #                                 #     #        
+   # #   #####   ####  #    # #####   #     #  ####  
+  #   #  #    # #    # #    #   #     #     # #      
+ #     # #####  #    # #    #   #     #     #  ####  
+ ####### #    # #    # #    #   #     #     #      # 
+ #     # #    # #    # #    #   #     #     # #    # 
+ #     # #####   ####   ####    #      #####   ####  
+*/
+
+/* 
+  #####                                            #     #        
+ #     #  ####  #    # #####   ##    ####  #####   #     #  ####  
+ #       #    # ##   #   #    #  #  #    #   #     #     # #      
+ #       #    # # #  #   #   #    # #        #     #     #  ####  
+ #       #    # #  # #   #   ###### #        #     #     #      # 
+ #     # #    # #   ##   #   #    # #    #   #     #     # #    # 
+  #####   ####  #    #   #   #    #  ####    #      #####   ####  
+*/
+
+
+address {
+  margin: 0;
+}
+
+.card-img {
+  transition: transform 0.3s ease-out; /* Adjust the transition duration as desired */
+  position: relative;
+  z-index: 1; /* Set a higher z-index value */
+}
+
+.card-img:hover {
+  transform: scale(2); /* Adjust the scale value as desired */
+  object-fit: contain;
+  position: relative; /* Change the position to relative */
+  z-index: 2; /* Set a higher z-index value */
+}
+
+.alert {
+  opacity: 0.8; /* Adjust the opacity as desired */
+  margin: 0;
+  padding: 0;
+}
+
+.alert,
+p {
+  color: black;
+  opacity: 0.9;
+}
+
 

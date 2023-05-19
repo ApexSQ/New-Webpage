@@ -1,58 +1,185 @@
-$(document).ready(function () {
-  let product = [];
+// Define an empty array to store the items in the shopping cart
+let shoppingCart = [];
 
-  let itemNumber = 0;
-  if (localStorage.getItem("items")) {
-    products = JSON.parse(localStorage.getItem("items"));
-    itemNumber = products.length;
+// Function to add an item to the shopping cart
+function addItemToCart(item) {
+  // Get the current cart items from localStorage
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+  // Check if the item already exists in the cart
+  const existingItem = cartItems.find((cartItem) => cartItem.name === item.name);
+  if (existingItem) {
+    // Increment the quantity of the existing item
+    existingItem.quantity = (existingItem.quantity || 1) + 1;
+  } else {
+    // Add the item to the cart
+    item.quantity = 1;
+    cartItems.push(item);
   }
-  $(".numberOfItems").text(itemNumber);
 
-  // when the user clicks the shopping cart button, update .modal-body with the items in the cart
-  $(".buttonWrapper").click(function () {
-    if (localStorage.getItem("items")) {
-      products = JSON.parse(localStorage.getItem("items"));
+  // Update the cart items in localStorage
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
 
-      let modalBody = $(".modal-body");
-      modalBody.empty(); // empty the initial contents of modal body before adding new items
+// Function to update the message and number in the shopping cart button
+function updateShoppingCartButton() {
+  const cartItemCount = getCartItemCount();
+  const cartButton = $("#viewCartBtn");
 
-      // render products name, price, and quantity
-      products.map((product) => {
-        modalBody.append(
-          `<div class="productWrapper" id="${product.name}">
-                <div id="productInfo">
-                  <div class="name">${product.name} - $${product.price}/item</div>
-                  <div class="quantity">x ${product.quantity}</div>
-                </div>
-                <div id="actions">
-                  <button class="btn btn-primary increaseQuantity" id="${product.name}">
-                    +
-                  </button>
-                  <button class="btn btn-danger decreaseQuantity" id="${product.name}">
-                    -
-                  </button>               
-              </div>
-              `
-        );
-      });
+  // Remove any existing count
+  cartButton.find("span.badge").remove();
 
-      $(".increaseQuantity").click(function () {
-        // get the id attribute of the button
-        let productName = $(this).attr("id");
-        // match the productName to the selected item inside products array
-        let product = products.find((product) => product.name === productName);
-        // then increase the selected item quantity by 1
-        product.quantity++;
+  // Update the count
+  if (cartItemCount > 0) {
+    cartButton.append(`<span class="badge bg-secondary">${cartItemCount}</span>`);
+  }
+}
 
-        // update the quantity div's text - go up to productWrapper level, and then find the div with .quantity class
-        $(this)
-          .closest(".productWrapper") // get the closest productWrapper div
-          .find(".quantity") // get the quantity div
-          .text(`x ${product.quantity}`); // update the text of the quantity
+// Function to get the total number of items in the shopping cart
+function getCartItemCount() {
+  // Get the cart items from localStorage
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-        // update the items in localStorage
-        localStorage.setItem("items", JSON.stringify(products));
-      });
-    }
+  // Calculate the total count of items
+  let totalCount = 0;
+  for (const item of cartItems) {
+    totalCount += item.quantity || 1;
+  }
+
+  return totalCount;
+}
+
+// Function to display the shopping cart
+function showShoppingCart() {
+  // Clear the modal body
+  $("#shoppingCartItems").empty();
+
+  // Get the cart items from localStorage
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+  // Calculate the total cost of items
+  let totalCost = 0;
+
+  // Loop through the items in the shopping cart and append them to the modal body
+  cartItems.forEach((item) => {
+    const itemHTML = `
+      <div class="cart-item">
+        <img src="${item.img}" alt="" class="cart-item-image">
+        <div>
+          <p>${item.name}</p>
+          <p>$${item.price}</p>
+          <input type="number" class="item-quantity" value="${item.quantity}" min="1" data-name="${item.name}">
+          <button class="remove-item-btn btn btn-danger btn-sm" data-name="${item.name}">Remove</button>
+        </div>
+      </div>
+    `;
+    $("#shoppingCartItems").append(itemHTML);
+
+    // Calculate the cost of the current item and add it to the total cost
+    const itemCost = item.price * item.quantity;
+    totalCost += itemCost;
   });
-});
+
+  // Show the shopping cart modal
+  $("#shoppingCartModal").modal("show");
+
+  // Display the total cost at the end of the modal body
+  const totalCostHTML = `
+    <div class="total-cost">
+      <p>Total Cost: $${totalCost.toFixed(2)}</p>
+    </div>
+  `;
+  $("#shoppingCartItems").append(totalCostHTML);
+
+  // Attach event listener to handle quantity change
+  $(".item-quantity").change(function () {
+    const itemName = $(this).data("name");
+    const newQuantity = parseInt($(this).val());
+    updateCartItemQuantity(itemName, newQuantity);
+  });
+
+  // Attach event listener to handle item removal
+  $(".remove-item-btn").click(function () {
+    const itemName = $(this).data("name");
+    removeCartItem(itemName);
+  });
+}
+
+
+// Function to remove a cart item
+function removeCartItem(itemName) {
+  // Get the cart items from localStorage
+  let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+  // Find the index of the item to remove
+  const itemIndex = cartItems.findIndex((item) => item.name === itemName);
+
+  if (itemIndex !== -1) {
+    // Remove the item from the cart
+    cartItems.splice(itemIndex, 1);
+
+    // Update the cart items in localStorage
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+    // Refresh the shopping cart display
+    showShoppingCart();
+
+    // Update the shopping cart button
+    updateShoppingCartButton();
+  }
+}
+
+// Function to update the quantity of a cart item
+function updateCartItemQuantity(itemName, newQuantity) {
+  // Get the cart items from localStorage
+  let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+  // Find the item in the cart
+  const itemToUpdate = cartItems.find((item) => item.name === itemName);
+
+  if (itemToUpdate) {
+    if (newQuantity <= 0) {
+      // Remove the item from the cart
+      const itemIndex = cartItems.indexOf(itemToUpdate);
+      cartItems.splice(itemIndex, 1);
+    } else {
+      // Update the quantity of the item
+      itemToUpdate.quantity = newQuantity;
+    }
+
+    // Update the cart items in localStorage
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+    // Refresh the shopping cart display
+    showShoppingCart();
+
+    // Update the shopping cart button
+    updateShoppingCartButton();
+  }
+}
+
+// Function to handle the checkout process
+function checkout() {
+  // Get the cart items from localStorage
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+  // Check if there are items in the shopping cart
+  if (cartItems.length === 0) {
+    alert("No items in the shopping cart.");
+    return;
+  }
+
+  // Perform the checkout logic here, e.g., sending the cart data to a server, processing payment, etc.
+
+  // Clear the cart items from localStorage
+  localStorage.removeItem("cartItems");
+
+  // Close the shopping cart modal
+  $("#shoppingCartModal").modal("hide");
+
+  // Update the shopping cart button
+  updateShoppingCartButton();
+
+  // Display a confirmation message or redirect to a thank you page
+  alert("Thank you for your purchase!");
+}
