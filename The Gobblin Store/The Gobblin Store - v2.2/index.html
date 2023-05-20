@@ -16,8 +16,10 @@
 
     <!-- Load jQuery from a cdn (cloudflare) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <!-- Load shop.js -->
-    <script src="./resources/scripts/shop.js"></script>
+
+  <!-- Load shop.js -->
+  <script src="resources/scripts/shop.js"></script>
+  <script src="resources/scripts/shoppingCart.js"></script>
   </head>
 
   <body>
@@ -58,6 +60,9 @@
           </li>
           <li class="nav-item p-lg-5">
             <a class="nav-link text-muted" href="./resources/pages/contact.html">Contact Us</a>
+          </li>
+          <li class="nav-item p-lg-5">
+            <a class="nav-link text-muted" href="./resources/pages/checkout.html">Checkout</a>
           </li>
         </ul>
       </div>
@@ -177,8 +182,8 @@
         </div>
       </div>
     </div>
-    <!-- Shopping Cart Button -->
-    <div id="shoppingCart"></div>
+
+
     <!-- Footer -->
     <div class="row">
       <footer
@@ -226,13 +231,34 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    <script>
-      // on document ready
-      $(document).ready(() => {
-        // Load shoppingCart.html
-        $("#shoppingCart").load("./resources/pages/shoppingCart.html");
-      });
-    </script>
+
+
+<!-- Shopping Cart Button -->
+<div id="shoppingCart" class="position-fixed top-1 end-1 mt-3 me-3">
+  <a href="#" id="viewCartBtn" class="btn btn-primary rounded-circle">
+    <img src="resources\styles\pics\Cart.png" alt="Shopping Cart Icon" class="btn-icon">
+  </a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="shoppingCartModal" tabindex="-1" aria-labelledby="shoppingCartModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shoppingCartModalLabel">Shopping Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="shoppingCartItems">
+        <!-- Shopping cart items will be dynamically inserted here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="checkoutBtn">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   </body>
 </html>

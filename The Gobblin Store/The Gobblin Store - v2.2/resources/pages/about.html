@@ -15,6 +15,10 @@
     <link href="../styles/main.css" rel="stylesheet" />
     <!-- Load jQuery from a cdn (cloudflare) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+  <!-- Load shop.js -->
+  <script src="../scripts/shop.js"></script>
+  <script src="../scripts/shoppingCart.js"></script>
   </head>
 
   <body>
@@ -50,23 +54,21 @@
       <ul class="navbar-nav col-lg-9 col-md-12 m-auto justify-content-end">
         <li class="nav-item p-lg-5">
           <!-- class="nav-link active text-black" -->
-          <a class="nav-link active text-black fw-bold" href="../../index.html"
-          >Home</a
-          >
-        </li>
-        <li class="nav-item p-lg-5">
-          <a class="nav-link text-muted" href="./shop.html">Shop</a>
-        </li>
-        <li class="nav-item p-lg-5">
-          <a class="nav-link text-muted" href="./about.html"
-          >About Us</a
-          >
-        </li>
-        <li class="nav-item p-lg-5">
-          <a class="nav-link text-muted" href="./contact.html"
-          >Contact Us</a
-          >
-        </li>
+          <li class="nav-item p-lg-5">
+            <a class="nav-link text-muted" href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item p-lg-5">
+            <a class="nav-link text-muted" href="./shop.html">Shop</a>
+          </li>
+          <li class="nav-item p-lg-5">
+            <a class="nav-link active text-black fw-bold" href="./about.html">About Us</a>
+          </li>
+          <li class="nav-item p-lg-5">
+            <a class="nav-link text-muted" href="./contact.html">Contact Us</a>
+          </li>
+          <li class="nav-item p-lg-5">
+            <a class="nav-link text-muted" href="./checkout.html">Checkout</a>
+          </li>
       </ul>
     </div>
   </nav>
@@ -93,9 +95,6 @@
         sustainable agriculture.
       </p>
     </div>
-
-    <!-- Shopping Cart Button -->
-    <div id="shoppingCart"></div>
 
     <!-- Footer -->
 
@@ -149,5 +148,35 @@
       });
     
     </script>
+
+    <!-- Shopping Cart Button -->
+<div id="shoppingCart" class="position-fixed top-1 end-1 mt-3 me-3">
+  <a href="#" id="viewCartBtn" class="btn btn-primary rounded-circle">
+    <img src="../styles/pics/Cart.png" alt="Shopping Cart Icon" class="btn-icon">
+  </a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="shoppingCartModal" tabindex="-1" aria-labelledby="shoppingCartModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shoppingCartModalLabel">Shopping Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="shoppingCartItems">
+        <!-- Shopping cart items will be dynamically inserted here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="checkoutBtn">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
   </body>
 </html>

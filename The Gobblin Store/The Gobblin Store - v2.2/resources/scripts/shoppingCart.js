@@ -60,11 +60,20 @@ function showShoppingCart() {
   // Calculate the total cost of items
   let totalCost = 0;
 
+
+  //resources/styles/pics/tiny.png 
   // Loop through the items in the shopping cart and append them to the modal body
+
   cartItems.forEach((item) => {
+    // Check if the current page is index.html
+    const isIndexPage = window.location.pathname.endsWith('index.html');
+  
+    // Set the image path based on the current page
+    const imagePath = isIndexPage ? "resources/styles/pics/tiny.png" : item.img;
+  
     const itemHTML = `
       <div class="cart-item">
-        <img src="${item.img}" alt="" class="cart-item-image">
+        <img src="${imagePath}" alt="" class="cart-item-image">
         <div>
           <p>${item.name}</p>
           <p>$${item.price}</p>
@@ -74,11 +83,12 @@ function showShoppingCart() {
       </div>
     `;
     $("#shoppingCartItems").append(itemHTML);
-
+  
     // Calculate the cost of the current item and add it to the total cost
     const itemCost = item.price * item.quantity;
     totalCost += itemCost;
   });
+  
 
   // Show the shopping cart modal
   $("#shoppingCartModal").modal("show");
