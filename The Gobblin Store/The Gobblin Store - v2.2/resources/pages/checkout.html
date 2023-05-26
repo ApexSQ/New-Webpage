@@ -18,6 +18,11 @@
   <!-- Load shop.js -->
   <script src="../scripts/shop.js"></script>
   <script src="../scripts/shoppingCart.js"></script>
+  <!-- Load checkout.js -->
+  <script src="../scripts/checkout.js"></script>
+  <!-- Load SendGrid -->
+  <script src="https://cdn.jsdelivr.net/npm/@sendgrid/mail@7.4.0"></script>
+  
 </head>
 
 <body>
@@ -141,6 +146,30 @@
           .addClass("nav-link text-black fw-bold");
       });
     });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@sendgrid/mail@7.4.0/umd/sendgrid.min.js"></script>
+  <script>
+    // Set your SendGrid API key here
+    SendGrid.setApiKey('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');
+
+    // Example usage: sending an email
+    function sendEmail() {
+      const msg = {
+        to: 'recipient@example.com',
+        from: 'sender@example.com',
+        subject: 'Test Email',
+        text: 'Hello from SendGrid!',
+        html: '<strong>Hello from SendGrid!</strong>'
+      };
+
+      SendGrid.send(msg)
+        .then(() => {
+          console.log('Email sent successfully');
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+        });
+    }
   </script>
 </body>
 </html>
